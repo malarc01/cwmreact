@@ -7,7 +7,7 @@ const Genre = props => {
     <div className="list-group">
       {genres.map(g => (
         <a
-          key={g.id}
+          key={g._id}
           href="#"
           className="list-group-item list-group-item-action "
         >
