@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 // Input: liked: Boolean
 // Output: onClick
 
-class Like extends Component {
-	render() {
-		let classes = 'fa fa-heart';
-		if (!this.props.liked) classes += '-o';
+//converted to stateles functional component
 
-		return (
-			<i onClick={this.props.onLikeToggle} style={{ cursor: 'pointer' }} className={classes} aria-hidden="true" />
-		);
-	}
-}
+const Like = (props) => {
+	let classes = 'fa fa-heart';
+	if (!props.liked) classes += '-o';
+
+	return <i onClick={props.onLikeToggle} style={{ cursor: 'pointer' }} className={classes} aria-hidden="true" />;
+};
 
 export default Like;
