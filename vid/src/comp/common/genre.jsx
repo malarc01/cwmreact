@@ -1,13 +1,19 @@
 import React from 'react';
 
 const Genre = (props) => {
-	const { genres, textProperty, valueProperty } = props;
+	const { genres, textProperty, valueProperty, onItemSelect, selectedItem } = props;
 
 	return (
 		<ul className="list-group">
 			{genres.map((g) => (
-				<li key={g[valueProperty]} className="list-group-item list-group-item-action ">
+				<li
+					onClick={(event) => onItemSelect(g)}
+					key={g[valueProperty]}
+					className={g === selectedItem ? 'list-group-item active' : 'list-group-item'}
+				>
 					{g[textProperty]}
+					{/* {console.log('g value is =>', g)} */}
+					{/* {g === selectedItem ? console.log('Selected Item matches ') : console.log(' 🕹 ')} */}
 				</li>
 			))}
 		</ul>

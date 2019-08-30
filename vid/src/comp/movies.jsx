@@ -52,7 +52,8 @@ class Movies extends Component {
 		this.setState({ currentPage: page });
 	};
 	handleGenreSelect = (genre) => {
-		console.log('GENRE IS ');
+		console.log('GENRE SELECTED/CLICKED IS => ', genre);
+		this.setState({ selectedGenre: genre });
 	};
 
 	render() {
@@ -71,7 +72,11 @@ class Movies extends Component {
 		return (
 			<div className="row" style={divStyle}>
 				<div className="col-3">
-					<Genre genres={this.state.genres} onItemSelect={this.handleGenreSelect} />
+					<Genre
+						genres={this.state.genres}
+						selectedItem={this.state.selectedGenre}
+						onItemSelect={this.handleGenreSelect}
+					/>
 				</div>
 				<div className="col">
 					<p>Showing {count} movies in the database</p>
