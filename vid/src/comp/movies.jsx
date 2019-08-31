@@ -64,9 +64,10 @@ class Movies extends Component {
 		this.setState({ selectedGenre: genre, currentPage: 1 });
 	};
 
-	handleSort = (path) => {
+	handleSort = (sortColumn) => {
 		// console.log('THE PATH IS =>', path);
-		this.setState({ sortColumn: { path, order: 'asc' } });
+
+		this.setState({ sortColumn });
 	};
 
 	render() {
@@ -99,6 +100,7 @@ class Movies extends Component {
 					<p>Showing {filtered.length} movies in the database</p>
 					<MoviesTable
 						films={films}
+						sortColumn={this.state.sortColumn}
 						onLikeToggle={this.handleLike}
 						onDelete={this.handleDelete}
 						onSort={this.handleSort}
