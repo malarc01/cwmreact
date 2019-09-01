@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import TableHeader from './common/tableHeader';
+import TableBody from './common/tableBody';
+
 import Like from './common/like';
 
 class MoviesTable extends Component {
@@ -9,17 +11,30 @@ class MoviesTable extends Component {
 		{ path: 'genre.name', label: 'Genre' },
 		{ path: 'numberInStock', label: 'Stock' },
 		{ path: 'dailyRentalRate', label: 'Rate' },
-		{ key: 'like' },
-		{ key: 'delete' }
+		{
+			key: 'like',
+			content: (filmObject) => (
+				<Like liked={filmObject.liked} onClick={() => this.props.onLikeToggle(filmObject)} />
+			)
+		},
+		{
+			key: 'delete',
+			content: (filmObject) => (
+				<button onClick={(click) => this.props.onDelete(filmObject)} className='btn  btn-danger btn-sm '>
+					Delete
+				</button>
+			)
+		}
 	];
 
 	render() {
-		const { films, onDelete, onLikeToggle, onSort, sortColumn } = this.props;
+		const { films, onSort, sortColumn } = this.props;
 
 		return (
 			<table className='table'>
 				<TableHeader columns={this.columns} sortColumn={sortColumn} onSort={onSort} />
-				<tbody>
+				<TableBody columns={this.columns} data={films} />
+				{/* <tbody>
 					{films.map((filmObject) => {
 						return (
 							<tr key={filmObject._id}>
@@ -27,22 +42,13 @@ class MoviesTable extends Component {
 								<td>{filmObject.genre.name}</td>
 								<td>{filmObject.numberInStock}</td>
 								<td>{filmObject.dailyRentalRate}</td>
-								<td>
-									<Like liked={filmObject.liked} onClick={() => onLikeToggle(filmObject)} />
-								</td>
+								<td />
 
-								<td>
-									<button
-										onClick={(click) => onDelete(filmObject)}
-										className='btn  btn-danger btn-sm '
-									>
-										Delete
-									</button>
-								</td>
+								<td />
 							</tr>
 						);
 					})}
-				</tbody>
+				</tbody> */}
 			</table>
 		);
 	}
