@@ -6,7 +6,7 @@ import Like from './common/like';
 class MoviesTable extends Component {
 	columns = [
 		{ path: 'title', label: 'Title' },
-		{ path: 'genre', label: 'Genre' },
+		{ path: 'genre.name', label: 'Genre' },
 		{ path: 'numberInStock', label: 'Stock' },
 		{ path: 'dailyRentalRate', label: 'Rate' },
 		{ key: 'like' },
