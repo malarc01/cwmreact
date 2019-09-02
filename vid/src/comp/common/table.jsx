@@ -3,9 +3,7 @@ import TableHeader from './tableHeader';
 import TableBody from './tableBody';
 
 //state functional components props are refer by just props NOT this.props that is for class components
-const Table = (props) => {
-	const { columns, sortColumn, onSort, data } = props;
-
+const Table = ({ columns, sortColumn, onSort, data }) => {
 	return (
 		<table className='table'>
 			<TableHeader columns={columns} sortColumn={sortColumn} onSort={onSort} />

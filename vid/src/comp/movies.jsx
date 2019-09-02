@@ -50,6 +50,7 @@ class Movies extends Component {
 	handleLike = (filmObject) => {
 		console.log('Like Clicked', filmObject);
 		const films = [ ...this.state.movies ];
+		console.log('OUTPUT =>: handleLike -> films', films);
 		const index = films.indexOf(filmObject);
 		films[index] = { ...films[index] };
 		films[index].liked = !films[index].liked;
@@ -59,6 +60,7 @@ class Movies extends Component {
 	handlePageChange = (page) => {
 		this.setState({ currentPage: page });
 	};
+
 	handleGenreSelect = (genre) => {
 		console.log('GENRE SELECTED/CLICKED IS => ', genre);
 		this.setState({ selectedGenre: genre, currentPage: 1 });
@@ -86,7 +88,7 @@ class Movies extends Component {
 		// const filmLength = this.state.movies.length;
 		//  filmLength destructing below
 		const { length: count } = this.state.movies;
-		const { pageSize, currentPage, sortColumn } = this.state;
+		const { pageSize, currentPage } = this.state;
 		if (count === 0) {
 			console.log('ZERO');
 			return <p>No Movies in the database</p>;

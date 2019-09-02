@@ -1,10 +1,8 @@
 import React from 'react';
 
-const Genre = (props) => {
-	const { genres, textProperty, valueProperty, onItemSelect, selectedItem } = props;
-
+const Genre = ({ genres, textProperty, valueProperty, onItemSelect, selectedItem }) => {
 	return (
-		<ul className="list-group">
+		<ul className='list-group'>
 			{genres.map((g) => (
 				<li
 					onClick={(event) => onItemSelect(g)}
