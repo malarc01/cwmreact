@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 class TableBody extends Component {
 	renderCell = (item, column) => {
+		// console.log('OUTPUT =>: renderCell -> column', column);
+		// console.log('OUTPUT =>: renderCell -> column', column.content(item));
+		// console.log(column.content);
 		if (column.content) return column.content(item);
+		// console.log('X', column.content);
 		return _.get(item, column.path);
 	};
 

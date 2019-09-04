@@ -3,9 +3,12 @@ import React from 'react';
 import { Route, Switch, Redirect, NavLink, Link } from 'react-router-dom';
 
 import './App.css';
+
 import Movies from './comp/movies';
 import Customers from './comp/customers';
 import Rentals from './comp/rentals';
+import NotFound from './comp/notFound';
+import NavBar from './comp/navBar';
 
 const divStyle = {
 	margin: '40px',
@@ -14,25 +17,30 @@ const divStyle = {
 
 function App() {
 	return (
-		<main style={divStyle} className='container'>
-			<h1> FILMS App.jsx</h1>
+		<React.Fragment>
+			<NavBar />
+			<main style={divStyle} className='container'>
+				<NavLink to='/movies'>Movies</NavLink>
+				<NavLink to='/customers'>Customers</NavLink>
+				<NavLink to='/rentals'>Rentals</NavLink>
 
-			<NavLink to='/movies'>Movies</NavLink>
-			<NavLink to='/customers'>Customers</NavLink>
-			<NavLink to='/rentals'>Rentals</NavLink>
-
-			<Link to='/movies'>M</Link>
+				<h1> FILMS App.jsx</h1>
+				{/* <Link to='/movies'>M</Link>
 			<Link to='/customers'>C</Link>
-			<Link to='/rentals'>R</Link>
+			<Link to='/rentals'>R</Link> */}
 
-			<Switch>
-				<Route path='/movies' component={Movies} />
-				{/* <Route path='/Customers' component={Customers} /> */}
-				<Route to='/customers' component={Customers} />
-				<Route path='/rentals' component={Rentals} />
-				<Redirect from='/' to='/movies' />
-			</Switch>
-		</main>
+				<Switch>
+					<Route path='/movies' component={Movies} />
+					{/* <Route path='/Customers' component={Customers} /> */}
+					<Route path='/customers' component={Customers} />
+					<Route path='/rentals' component={Rentals} />
+					<Route path='/not-found' component={NotFound} />
+
+					<Redirect from='/' exact to='/movies' />
+					<Redirect to='/not-found' />
+				</Switch>
+			</main>
+		</React.Fragment>
 	);
 }
 

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-
+import { Link, Route } from 'react-router-dom';
 import Table from './common/table';
 import Like from './common/like';
-
+import MovieForm from './movieForm';
 class MoviesTable extends Component {
 	columns = [
-		{ path: 'title', label: 'Title' },
+		{ content: (value) => <Link to='/id' test={value} />, label: 'Title' },
+		// { path: 'title', label: 'Title' },
 		{ path: 'genre.name', label: 'Genre' },
 		{ path: 'numberInStock', label: 'Stock' },
 		{ path: 'dailyRentalRate', label: 'Rate' },
@@ -30,9 +31,16 @@ class MoviesTable extends Component {
 	];
 
 	render() {
+		// console.log('PROPS FOR MOVIESTALBE IS', this.props);
+		console.log('PROPS FOR MOVIESTALBE IS', this.columns);
 		const { films, onSort, sortColumn } = this.props;
 
-		return <Table columns={this.columns} data={films} sortColumn={sortColumn} onSort={onSort} />;
+		return (
+			<div>
+				<Table columns={this.columns} data={films} sortColumn={sortColumn} onSort={onSort} />
+				<Route path={'/id'} component={MovieForm} />
+			</div>
+		);
 	}
 }
 
