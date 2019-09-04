@@ -9,6 +9,7 @@ import Customers from './comp/customers';
 import Rentals from './comp/rentals';
 import NotFound from './comp/notFound';
 import NavBar from './comp/navBar';
+import MovieForm from './comp/movieForm';
 
 const divStyle = {
 	margin: '40px',
@@ -20,16 +21,8 @@ function App() {
 		<React.Fragment>
 			<NavBar />
 			<main style={divStyle} className='container'>
-				<NavLink to='/movies'>Movies</NavLink>
-				<NavLink to='/customers'>Customers</NavLink>
-				<NavLink to='/rentals'>Rentals</NavLink>
-
-				<h1> FILMS App.jsx</h1>
-				{/* <Link to='/movies'>M</Link>
-			<Link to='/customers'>C</Link>
-			<Link to='/rentals'>R</Link> */}
-
 				<Switch>
+					<Route path='/movies/:id' component={MovieForm} />
 					<Route path='/movies' component={Movies} />
 					{/* <Route path='/Customers' component={Customers} /> */}
 					<Route path='/customers' component={Customers} />
