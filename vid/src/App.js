@@ -10,7 +10,7 @@ import Rentals from './comp/rentals';
 import NotFound from './comp/notFound';
 import NavBar from './comp/navBar';
 import MovieForm from './comp/movieForm';
-
+import LoginForm from './comp/loginForm';
 const divStyle = {
 	margin: '40px',
 	border: '5px solid purple'
@@ -22,6 +22,7 @@ function App() {
 			<NavBar />
 			<main style={divStyle} className='container'>
 				<Switch>
+					<Route path='/login' component={LoginForm} />
 					<Route path='/movies/:id' component={MovieForm} />
 					<Route path='/movies' component={Movies} />
 					{/* <Route path='/Customers' component={Customers} /> */}
