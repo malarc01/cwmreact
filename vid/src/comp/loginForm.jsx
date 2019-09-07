@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Input from './common/input';
+import Joi from 'joi-browser';
 
 class LoginForm extends Component {
 	// username = React.createRef();
@@ -10,9 +11,7 @@ class LoginForm extends Component {
 
 	state = {
 		account: { username: '', password: '' },
-		errors: {
-			username: 'Username is required.'
-		}
+		errors: {}
 	};
 
 	// errors['username']
@@ -20,15 +19,47 @@ class LoginForm extends Component {
 	// errors.find(e=>e.name==='username')
 
 	// intialize forms to empty string CAN NOT use null or undefined
+	schema = {
+		username: Joi.string().required().label('Username'),
+		password: Joi.string().required().label('Password')
+	};
 
 	validate = () => {
+		const options = { abortEarly: false };
+		const { error } = Joi.validate(this.state.account, this.schema, options);
+
+		if (!error) return null;
+
 		const errors = {};
+		// maps array into a Object try with map and reduce methods
+		for (let item of error.details) errors[item.path[0]] = item.message;
+		return errors;
 
-		const { account } = this.state;
+		// console.log('OUTPUT =>: validate -> result', result);
 
-		if (account.username.trim() === '') errors.username = 'Username is required.';
-		if (account.password.trim() === '') errors.password = 'Password is required.';
-		return Object.keys(errors).length === 0 ? null : errors;
+		// const errors = {};
+
+		// const { account } = this.state;
+
+		// if (account.username.trim() === '') errors.username = 'Username is required.';
+		// if (account.password.trim() === '') errors.password = 'Password is required.';
+		// return Object.keys(errors).length === 0 ? null : errors;
+	};
+
+	validateProperty = ({ name, value }) => {
+		const obj = { [name]: value };
+		const schema = { [name]: this.schema[name] };
+
+		const { error } = Joi.validate(obj, schema);
+		return error ? error.details[0].message : null;
+
+		// if (name === 'username') {
+		// 	if (value.trim() === '') return 'Username is required';
+		// 	// ... other rules
+		// }
+		// if (name === 'username') {
+		// 	if (value.trim() === '') return 'Password is required';
+		// }
 	};
 
 	handleSubmit = (e) => {
@@ -44,15 +75,7 @@ class LoginForm extends Component {
 
 		console.log('Submitted');
 	};
-	validateProperty = ({ name, value }) => {
-		if (name === 'username') {
-			if (value.trim() === '') return 'Username is required';
-			// ... other rules
-		}
-		if (name === 'username') {
-			if (value.trim() === '') return 'Password is required';
-		}
-	};
+
 	handleChange = ({ currentTarget: input }) => {
 		const errors = { ...this.state.errors };
 		const errorMessage = this.validateProperty(input);
