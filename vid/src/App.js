@@ -13,6 +13,8 @@ import MovieForm from './comp/movieForm';
 import LoginForm from './comp/loginForm';
 import RegisterForm from './comp/registerForm';
 
+import addMovie from './comp/addMovie';
+
 const divStyle = {
 	margin: '40px',
 	border: '5px solid purple'
@@ -27,6 +29,7 @@ function App() {
 					<Route path='/register' component={RegisterForm} />
 					<Route path='/login' component={LoginForm} />
 					<Route path='/movies/:id' component={MovieForm} />
+					<Route path='/movies/new' component={addMovie} />
 					<Route path='/movies' component={Movies} />
 					{/* <Route path='/Customers' component={Customers} /> */}
 					<Route path='/customers' component={Customers} />

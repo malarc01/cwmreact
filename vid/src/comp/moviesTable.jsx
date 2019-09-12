@@ -32,13 +32,16 @@ class MoviesTable extends Component {
 	];
 
 	render() {
-		// console.log('PROPS FOR MOVIESTALBE IS', this.props);
-		console.log('PROPS FOR MOVIESTALBE IS', this.columns);
-		const { films, onSort, sortColumn } = this.props;
+		// console.log('PROPS FOR MOVIE STABLE IS', this.props);
+		console.log('this.columns => ', this.columns);
+		console.log('moviesTable.jsx props => ', this.props);
+
+		const { films, onSort, sortColumn, handleAdd } = this.props;
 
 		return (
 			<div>
 				<Table columns={this.columns} data={films} sortColumn={sortColumn} onSort={onSort} />
+
 				<Route path={'/id'} component={MovieForm} />
 			</div>
 		);

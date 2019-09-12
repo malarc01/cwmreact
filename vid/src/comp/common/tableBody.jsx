@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import _ from 'lodash';
+
 class TableBody extends Component {
 	renderCell = (item, column) => {
 		// console.log('OUTPUT =>: renderCell -> column', column);

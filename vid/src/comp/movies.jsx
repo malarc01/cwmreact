@@ -4,11 +4,14 @@ import MoviesTable from './moviesTable';
 
 import Pagination from './common/pagination';
 import Genre from './common/genre';
+import addMovie from './addMovie';
 
 import { getMovies } from '../services/fakeMovieService';
 import { getGenres } from '../services/fakeGenreService';
 import { paginate } from '../utils/paginate';
 import _ from 'lodash';
+
+import { Link, Route } from 'react-router-dom';
 
 const divStyle = {
 	margin: '40px',
@@ -42,9 +45,24 @@ class Movies extends Component {
 				// console.log("MMMMMMMMMMMMMMMMMM is =>", m);
 				m._id !== film._id
 		);
+
 		this.setState({ movies: newMoviesArray });
 
-		console.log('💕');
+		console.log('handleDelete () end');
+	};
+
+	handleAdd = (film) => {
+		console.log(' handleAdd new film => ', film);
+
+		// const newMoviesArray = this.state.movies.filter(
+		// 	(m) =>
+		// 		// console.log("MMMMMMMMMMMMMMMMMM is =>", m);
+		// 		m._id !== film._id
+		// );
+
+		// this.setState({ movies: newMoviesArray });
+
+		console.log('handleAdd () end');
 	};
 
 	handleLike = (filmObject) => {
@@ -85,6 +103,7 @@ class Movies extends Component {
 	};
 
 	render() {
+		console.log('movies.jsx', this.state);
 		// const filmLength = this.state.movies.length;
 		//  filmLength destructing below
 		const { length: count } = this.state.movies;
@@ -105,9 +124,16 @@ class Movies extends Component {
 						onItemSelect={this.handleGenreSelect}
 					/>
 				</div>
+
 				<div className='col'>
+					<Link to='/movies/new' className='btn m-3 btn-primary'>
+						New Movie
+					</Link>
+
 					<p>Showing {totalCount} movies in the database</p>
+
 					<MoviesTable
+						handleAdd={this.handleAdd}
 						films={movies}
 						sortColumn={this.state.sortColumn}
 						onLikeToggle={this.handleLike}
